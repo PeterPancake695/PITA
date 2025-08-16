@@ -64,7 +64,7 @@ public class Intake {
     Intake(HardwareMap hwmap) {
         dashboard = FtcDashboard.getInstance();
 
-        pidIntake = new PID3(Intake.kP, Intake.kI, Intake.kD, 0);
+        pidIntake = new PID3(kP, kI, kD, 0);
         pidIntake.setOutputRange(-1.0, 1.0);
         pidIntake.setIntegralLimit(0.25);
         hardware(hwmap);

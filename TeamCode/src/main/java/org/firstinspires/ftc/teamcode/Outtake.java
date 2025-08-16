@@ -13,13 +13,18 @@ public class Outtake {
 
     PID3 pidIntake;
     public static double kP = 0.05, kI = 0, kD = 0;
-    public static int targetSliderExtended = 1600, targetSliderRetracted = 0;
+    public static int targetSliderFull = 1600, targetSliderMiddle = 800, targetSliderRetracted = 0;
     public static double positionArmLeft = 0, positionArmRight = 0.6;
     public static double positionWristLeft = 0, positionWristRight = 0.6;
     public static double positionClawOpen = 0.1, positionClawClosed = 0;
 
     DcMotorEx motorSliderVertical;
     Servo servoArm, servoWrist, servoClaw;
+
+    public enum sliderPos {
+        FULL,
+        MIDDLE
+    }
 
     public enum sliderVertical {
         RETRACTED,
@@ -40,10 +45,11 @@ public class Outtake {
         LEFT,
         RIGHT
     }
+    public static sliderPos caseSliderVerticalPos;
 
     public static sliderVertical caseSliderVertical;
     public static arm caseArm;
-    public static  claw caseClaw;
+    public static claw caseClaw;
     public static wrist caseWrist;
 
     void hardware(HardwareMap hwmap) {
@@ -60,7 +66,7 @@ public class Outtake {
     Outtake(HardwareMap hwmap) {
         dashboard = FtcDashboard.getInstance();
 
-        pidIntake = new PID3(Intake.kP, Intake.kI, Intake.kD, 0);
+        pidIntake = new PID3(kP, kI, kD, 0);
         pidIntake.setOutputRange(-1.0, 1.0);
         pidIntake.setIntegralLimit(0.25);
         hardware(hwmap);
@@ -73,7 +79,14 @@ public class Outtake {
                 power = pidIntake.update(targetSliderRetracted, currentPosition);
                 break;
             case EXTENDED:
-                power = pidIntake.update(targetSliderExtended, currentPosition);
+                switch (caseSliderVerticalPos) {
+                    case FULL:
+                        power = pidIntake.update(targetSliderFull, currentPosition);
+                        break;
+                    case MIDDLE:
+                        power = pidIntake.update(targetSliderMiddle, currentPosition);
+                        break;
+                }
                 break;
         }
         motorSliderVertical.setPower(power);

@@ -43,6 +43,7 @@ public class Robot {
                 pickupTimer.reset();
                 break;
             case PICKUP:
+                Outtake.caseSliderVerticalPos = Outtake.sliderPos.FULL;
                 states = stateMachine.DUNKING;
                 transferTimer.reset();
                 break;

@@ -31,6 +31,16 @@ public class Main extends LinearOpMode {
             if(Robot.states == Robot.stateMachine.PICKUP && gamepad1.bWasPressed())
                 Robot.states = Robot.stateMachine.HOVERING;
 
+            if(Robot.states == Robot.stateMachine.DUNKING && gamepad1.yWasPressed())
+                switch (Outtake.caseSliderVerticalPos) {
+                    case FULL:
+                        Outtake.caseSliderVerticalPos = Outtake.sliderPos.MIDDLE;
+                        break;
+                    case MIDDLE:
+                        Outtake.caseSliderVerticalPos = Outtake.sliderPos.FULL;
+                        break;
+                }
+
             if(Robot.states == Robot.stateMachine.HOVERING) {
                 if(gamepad1.dpadUpWasPressed())
                     Intake.caseWrist = Intake.wrist.VERTICAL;
