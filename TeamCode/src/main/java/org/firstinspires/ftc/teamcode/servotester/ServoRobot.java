@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class ServoRobot {
-    private FtcDashboard dashboard;
+    FtcDashboard dashboard;
     public static double servoPosition = 0.0;
     Servo servo;
 
