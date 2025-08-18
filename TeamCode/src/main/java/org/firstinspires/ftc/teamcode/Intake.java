@@ -68,6 +68,7 @@ public class Intake {
         pidIntake.setOutputRange(-1.0, 1.0);
         pidIntake.setIntegralLimit(0.25);
         hardware(hwmap);
+        servoClaw.setDirection(Servo.Direction.REVERSE);
     }
     void runSlider() {
         int currentPosition = motorSliderHorizontal.getCurrentPosition();

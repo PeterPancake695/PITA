@@ -14,6 +14,7 @@ public class ServoRobot {
     public ServoRobot(HardwareMap hwmap) {
         dashboard = FtcDashboard.getInstance();
         servo = hwmap.get(Servo.class, "servo");
+        servo.setDirection(Servo.Direction.REVERSE);
     }
 
     public void setServoPosition(){
