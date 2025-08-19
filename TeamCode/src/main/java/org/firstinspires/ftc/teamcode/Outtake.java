@@ -16,7 +16,7 @@ public class Outtake {
     public static int targetSliderFull = 1600, targetSliderMiddle = 800, targetSliderRetracted = 0;
     public static double positionArmLeft = 0, positionArmRight = 0.6;
     public static double positionWristLeft = 0, positionWristRight = 0.6;
-    public static double positionClawOpen = 0.1, positionClawClosed = 0;
+    public static double positionClawOpen = 0.40, positionClawClosed = 0.64;
 
     DcMotorEx motorSliderVertical;
     Servo servoArm, servoWrist, servoClaw;
@@ -71,6 +71,7 @@ public class Outtake {
         pidIntake.setIntegralLimit(0.25);
         hardware(hwmap);
         servoClaw.setDirection(Servo.Direction.REVERSE);
+        servoWrist.setDirection(Servo.Direction.REVERSE);
     }
     void runSlider() {
         int currentPosition = motorSliderVertical.getCurrentPosition();

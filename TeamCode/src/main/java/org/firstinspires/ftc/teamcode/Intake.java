@@ -15,9 +15,9 @@ public class Intake {
     public static double kP = 0.05, kI = 0, kD = 0;
     public static int targetSliderExtended = 1600, targetSliderRetracted = 0, targetSliderTransfer = 200;
     public static double positionArmUp = 0.3, positionArmDown = 0.63, positionArmHovering = 0.5, positionArmTransfer = 0;
-    public static double positionWristHorizontal = 0.52, positionWristVertical = 0.18;
+    public static double positionWristHorizontal = 0, positionWristVertical = 0;
     public static double positionWristDiagonalLeft = 0, positionWristDiagonalRight = 0.3;
-    public static double positionClawOpen = 0.1, positionClawClosed = 0;
+    public static double positionClawOpen = 0.43, positionClawClosed = 0.69;
 
 
     DcMotorEx motorSliderHorizontal;
