@@ -15,8 +15,7 @@ public class Intake {
     public static double kP = 0.05, kI = 0, kD = 0;
     public static int targetSliderExtended = 1600, targetSliderRetracted = 0, targetSliderTransfer = 200;
     public static double positionArmUp = 0.3, positionArmDown = 0.63, positionArmHovering = 0.5, positionArmTransfer = 0;
-    public static double positionWristHorizontal = 0, positionWristVertical = 0;
-    public static double positionWristDiagonalLeft = 0, positionWristDiagonalRight = 0.3;
+    public static double positionWristHorizontal = 0.02, positionWristVertical = 0.35;
     public static double positionClawOpen = 0.43, positionClawClosed = 0.69;
 
 
@@ -39,8 +38,6 @@ public class Intake {
     public enum wrist {
         HORIZONTAL,
         VERTICAL,
-        LEFTDIAGONAL,
-        RIGHTDIAGONAL
     }
 
     public enum claw {
@@ -57,6 +54,7 @@ public class Intake {
         servoWrist = hwmap.get(Servo.class, "servowristintake");
         servoClaw = hwmap.get(Servo.class, "servoclawintake");
 
+        motorSliderHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorSliderHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorSliderHorizontal.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorSliderHorizontal.setDirection(DcMotor.Direction.REVERSE);
@@ -111,12 +109,6 @@ public class Intake {
                 break;
             case VERTICAL:
                 servoWrist.setPosition(positionWristVertical);
-                break;
-            case LEFTDIAGONAL:
-                servoWrist.setPosition(positionWristDiagonalLeft);
-                break;
-            case RIGHTDIAGONAL:
-                servoWrist.setPosition(positionWristDiagonalRight);
                 break;
         }
     }
