@@ -57,6 +57,7 @@ public class Intake {
         servoWrist = hwmap.get(Servo.class, "servowristintake");
         servoClaw = hwmap.get(Servo.class, "servoclawintake");
 
+        motorSliderHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorSliderHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorSliderHorizontal.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorSliderHorizontal.setDirection(DcMotor.Direction.REVERSE);
