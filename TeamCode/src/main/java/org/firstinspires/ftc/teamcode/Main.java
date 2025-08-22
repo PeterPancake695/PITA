@@ -8,7 +8,6 @@ public class Main extends LinearOpMode {
     Robot robot;
 
     void telemetry() {
-        telemetry.addData("Outtake slider:", robot.outtake.motorSliderVertical.getCurrentPosition());
         telemetry.update();
     }
 
@@ -22,6 +21,8 @@ public class Main extends LinearOpMode {
         while(opModeIsActive()) {
             robot.drive.move(gamepad1.left_stick_x, gamepad1.left_stick_y,
                     gamepad1.left_trigger, gamepad1.right_trigger);
+
+            telemetry();
 
             if(gamepad1.aWasPressed()) {
                 robot.toggle();
@@ -45,13 +46,16 @@ public class Main extends LinearOpMode {
                     Intake.caseWrist = Intake.wrist.VERTICAL;
                 if(gamepad1.dpadDownWasPressed())
                     Intake.caseWrist = Intake.wrist.HORIZONTAL;
+                if(gamepad1.dpadLeftWasPressed())
+                    Intake.caseWrist = Intake.wrist.LEFTDIAGONAL;
+                if(gamepad1.dpadRightWasPressed())
+                    Intake.caseWrist = Intake.wrist.RIGHTDIAGONAL;
             }
 
             robot.changeState();
 
             robot.run();
-
-            telemetry();
         }
+
     }
 }

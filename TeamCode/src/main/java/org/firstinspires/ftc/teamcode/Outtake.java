@@ -59,7 +59,6 @@ public class Outtake {
         servoWrist = hwmap.get(Servo.class, "servowristouttake");
         servoClaw = hwmap.get(Servo.class, "servoclawouttake");
 
-        motorSliderVertical.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorSliderVertical.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorSliderVertical.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorSliderVertical.setDirection(DcMotor.Direction.REVERSE);
